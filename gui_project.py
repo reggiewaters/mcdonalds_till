@@ -3,41 +3,66 @@ import tkinter.messagebox as tkmb
 import random
 
 
-ITEM_PRICES = {
-    'Big Mac' : 5.69,
-    'Quarter Pounder BLT' : 6.09,
-    'McChicken' : 5.39,
-    'Nuggets (10PC)' : 6.99,
-    'Junior Chicken' : 1.99,
-    'Filet-O-Fish' : 5.19,
-    'Egg McMuffin' : 4.19,
-    'Egg BLT Bagel' : 4.69,
-    'Small Fries' : 1.69
-}
-
 
 class McDonaldsTill:
+
+    ITEM_PRICES = {
+        'Big Mac' : 5.69,
+        'Quarter Pounder BLT' : 6.09,
+        'McChicken' : 5.39,
+        'Nuggets (10PC)' : 6.99,
+        'Junior Chicken' : 1.99,
+        'Filet-O-Fish' : 5.19,
+        'Egg McMuffin' : 4.19,
+        'Egg BLT Bagel' : 4.69,
+        'Fries' : 1.69
+    }
+    user_order = ['Order']
+    total_items = 0
+    order_total = 0.0
+
     def __init__(self):
-        user_order = []
-        total_items = 0
-        order_total = 0.0
         self.mainWin = Tk()
         self.mainWin.title('Reggie\'s Project')
-        self.mainWin.geometry('1200x720')
+        self.mainWin.geometry('1600x900')
+
+        self.button_food_frame = Frame(self.mainWin, width = 960, height = 900)
+        self.button_food_frame.place(x = 0, y = 120)
 
         self.item = StringVar()
 
-        self.big_mac_button = Button(self.mainWin, text = 'Big Mac', height = 5, width = 10)
-        self.big_mac_button.pack()
+        self.big_mac_button = Button(self.button_food_frame, text = 'Big Mac', height = 10, width = 20, font = 'bold', command = lambda: self.add_item_to_order('Big Mac'))
+        self.big_mac_button.place(x = 0, y = 0)
 
-        self.big_mac_button.configure(command = lambda: self.add_item_to_order(self.big_mac_button))
+        self.quarter_pounder_button = Button(self.button_food_frame, text = 'Quarter Pounder BLT', height = 10, width = 20, font = 'bold' command = lambda: self.add_item_to_order('Quarter Pounder BLT'))
+        self.quarter_pounder_button.place(x = 0, y = 150)
 
+        self.mc_chicken_button = Button(self.button_food_frame, text = ' McChicken', height = 10, width = 20, font = 'bold', command = lambda: self.add_item_to_order('McChicken'))
+        self.mc_chicken_button.place(x = 0, y = 300)
+
+        self.nuggets_ten_button = Button(self.button_food_frame, text = 'Chicken Nuggets', height = 10, width = 20, font = 'bold', command = lambda: self.add_item_to_order('Nuggets (10PC'))
+        self.nuggets_ten_button.place(x = 0, y = 450)
+
+        self.junior_chkn_button = Button(self.button_food_frame, text = 'Junior Chicken', height = 10, width = 20, font = 'bold', command = lambda: self.add_item_to_order('Junior Chicken'))
+        self.junior_chkn_button.place(x = 180, y = 600)
+
+        self.filet_o_fish_button = Button(self.button_food_frame, text = 'Filet-O-Fish', height = 10, width = 20, font = 'bold', command = lambda: self.add_item_to_order('Filet-O-Fish'))
+        self.filet_o_fish_button.place(x = 180, y = 0)
+
+        self.egg_mc_muffin_button = Button(self.button_food_frame, text = 'Egg McMuffin', height = 10, width = 20, command = lambda: self.add_item_to_order('Egg McMuffin'))
+        self.egg_mc_muffin_button.place(x = 180, y = 150)
+
+        self.egg_blt_bagel_button = Button(self.button_food_frame, text = 'Egg BLT Bagel', height = 10, width = 20, command = lambda: self.add_item_to_order('Egg BLT Bagel'))
+        self.egg_blt_bagel_button.place(x = 180, y = 300)
+
+        self.fries_button = Button(self.button_food_frame, text = 'Fries', height = 10, width = 20, command = lambda: self.add_item_to_order('Fries'))
+        self.fries_button.place(x = 180, y = 450)
+        
         mainloop()
 
-    def add_item_to_order(self, button):
-        item_text = button.cget('text')
-        user_order[total_items] = item_text
-        total_items += 1
-        order_total += ITEM_PRICES[item_text]
+    def add_item_to_order(self, item):
+        self.user_order[self.total_items] = item
+        self.total_items += 1
+        self.order_total += self.ITEM_PRICES[item]
 
 gui = McDonaldsTill()
